@@ -22,17 +22,9 @@ extension Features.ToDoList {
         // MARK: - Body
         var body: some View {
             VStack {
-                Button {
-                    store.dispatch(action: .add(item: .init(title: "Titulo", isDone: false)))
-                } label: {
-                    Text("Add Item")
-                }
-                ForEach(store.state.toDoItems) { item in
-                    Text(item.title)
-                        .onTapGesture {
-                            store.dispatch(action: .remove(item: item))
-                        }
-                }
+                FormView<Store>()
+                ListView<Store>()
+                Spacer()
             }
             .environmentObject(store)
             .padding()
