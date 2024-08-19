@@ -8,11 +8,14 @@
 import Combine
 
 extension Features.ToDoList {
-    // MARK: = Typealias
-    typealias AppStore = Store<AppState, AppAction>
+    // MARK: - Protocol
+    protocol AppStoreProtocol: ObservableObject {
+        var state: AppState { get }
+        func dispatch(action: AppAction)
+    }
     
     // MARK: - Store
-    final class Store<AppState, AppAction>: ObservableObject {
+    final class AppStore: AppStoreProtocol {
         // MARK: - Properties
         @Published private(set) var state: AppState
         private let reducer: Reducer<AppState, AppAction>

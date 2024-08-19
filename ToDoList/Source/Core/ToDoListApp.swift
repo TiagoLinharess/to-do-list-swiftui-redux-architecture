@@ -11,7 +11,8 @@ import SwiftUI
 struct ToDoListApp: App {
     var body: some Scene {
         WindowGroup {
-            Features.ToDoList.ContentView()
+            Features.ToDoList.ContentView(store: Features.ToDoList.AppStore(initialState: .init(),
+                                                                            reducer: Features.ToDoList.reducer))
         }
     }
 }
